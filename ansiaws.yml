@@ -32,7 +32,7 @@
     - name: Ensure EC2 instances runninh according to count
       ec2:
         group: "{{ security_group }}"
-        instance_type: "{{ instance_type}} "
+        instance_type: "{{ instance_type}}"
         image : "{{ image }}"
         wait : true
         region : "{{ region }}"
