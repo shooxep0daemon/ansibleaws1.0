@@ -18,7 +18,7 @@
         region: "{{ region }}"
         rules:
           - proto: tcp
-            type: ssh
+            name: ssh
             from_port: 22
             to_port: 22
             cidr_ip: 0.0.0.0/0
