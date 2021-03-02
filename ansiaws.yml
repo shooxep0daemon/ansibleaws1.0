@@ -11,7 +11,7 @@
 
   tasks:
 
-    - name: Create a security group
+    - name: Ensure creation of a security group
       ec2_group: 
         name: "{{ security_group }}"
         description: Security Group for prod pods
@@ -27,15 +27,15 @@
             cidr_ip: 0.0.0.0/0
         rules_egress:
           - proto: all
-            cidr_ip: 0.0.0.0/0
+            cidr_ip: 0.0.0.0/0 
 
-#####     - name: Launch the new EC2 Instance
-#####       local_action: ec2 
-#####                      group={{ security_group }} 
-  ##########                    instance_type={{ instance_type}} 
-#####                    image={{ image }} 
-   #####                   wait=true 
-   #####                   region={{ region }} 
-   ##### #####                  keypair={{ keypair }}
- #####                     count={{count}}
-  #####       register: ec2
+    - name: Ensure EC2 instances runninh according to count
+      ec2:
+        group: {{ security_group }}
+        instance_type: {{ instance_type}} 
+        image : {{ instance_type}} 
+        wait : true
+        region : {{ region }}
+        keypair : {{ keypair }}
+        count: {{count}}
+      register: ec2
