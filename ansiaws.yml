@@ -31,11 +31,11 @@
 
     - name: Ensure EC2 instances runninh according to count
       ec2:
-        group: {{ security_group }}
-        instance_type: {{ instance_type}} 
-        image : {{ instance_type}} 
+        group: "{{ security_group }}"
+        instance_type: "{{ instance_type}} "
+        image : "{{ image }}"
         wait : true
-        region : {{ region }}
-        keypair : {{ keypair }}
-        count: {{count}}
+        region : "{{ region }}"
+        keypair : "{{ keypair }}"
+        count: "{{count}}"
       register: ec2
