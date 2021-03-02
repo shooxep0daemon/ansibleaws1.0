@@ -4,7 +4,7 @@
   vars:
       instance_type: t2.micro
       security_group: buildsrv2 
-      image: ami-08bac620dc84221e 
+      image: ami-08bac620dc84221eb
       region: eu-west-1 
       keypair: ansible
       count: 1
