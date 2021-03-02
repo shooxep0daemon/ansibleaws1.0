@@ -28,7 +28,6 @@
             cidr_ip: 0.0.0.0/0
         rules_egress:
           - proto: all
-            type: all
             cidr_ip: 0.0.0.0/0
 
 #####     - name: Launch the new EC2 Instance
