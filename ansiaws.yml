@@ -9,7 +9,7 @@
          group: test
          instance_type: t2.micro
          image: "ami-0d6aecf0f0425f42a"
-         region: eu-west-3
+         region: eu-west-1
          wait: true
          exact_count: 2
          count_tag:
