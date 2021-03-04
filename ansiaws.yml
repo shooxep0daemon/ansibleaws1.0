@@ -7,9 +7,12 @@
       image: ami-08bac620dc84221eb
       region: eu-west-1 
       keypair: ansible
-      count: 1
+      count: 2
+      #we need 2 instances sooo,,
 
   tasks:
+
+# we skip creation of keys, done outside already
 
     - name: Ensure creation of a security group
       ec2_group: 
@@ -18,18 +21,19 @@
         region: "{{ region }}"
         rules:
           - proto: tcp
-            from_port: 22
-            to_port: 22
+            ports: 
+              - 22
             cidr_ip: 0.0.0.0/0
           - proto: tcp
-            from_port: 80
-            to_port: 80
+            ports:
+              - 8080
             cidr_ip: 0.0.0.0/0
         rules_egress:
           - proto: all
             cidr_ip: 0.0.0.0/0 
+      register: security_group
 
-    - name: Ensure that there are "{{count}}" EC2 instances running. 
+    - name: Ensure that there are "{{count}}" EC2 instances will be created or running already 
       ec2:
         group: "{{ security_group }}"
         instance_type: "{{ instance_type}}"
@@ -38,4 +42,10 @@
         region : "{{ region }}"
         keypair : "{{ keypair }}"
         count: "{{count}}"
+        instance_tags:
+          Name: prod
+          Name: prod2
+        state: running
       register: ec2
+
+
