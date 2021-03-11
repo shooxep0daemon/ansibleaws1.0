@@ -80,10 +80,7 @@
   remote_user: ubuntu
   become: yes
   tasks:
-    - name: update repository
-      apt:
-       update_cache: yes 
-       
+
     - name: Ensure that DOCKER daemon and Python env is present
       apt:
         pkg:
@@ -106,15 +103,15 @@
         email: '{{ dhub_email }}'
         password: '{{ dhub_passwd }}'
      
-    - name: Copy my dockerfile
-      copy:
-        src: Dockerfile
-        dest: '{{ dest_dockerfile }}/Dockerfile'
+    - name: Git my dockerfile
+      git:
+       repo: https://github.com/shooxep0daemon/ansibleaws1.0
+       dest: /home/ubuntu/build
 
     - name: Ensure image is build and pushed from Builderhost to DH
       docker_image:
         name: '{{ my_boxfuse }}'
-        path: '{{ dest_dockerfile }}/'
+        path: '/home/ubuntu/build/'
         state: present
         push: yes
 
