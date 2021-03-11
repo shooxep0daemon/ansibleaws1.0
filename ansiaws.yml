@@ -74,9 +74,9 @@
  #prepare host and build from there
 
   - name: Ensure building of a war file in a container
-      hosts: buildergrp
-      remote_user: ubuntu
-      become: yes
+    hosts: buildergrp
+    remote_user: ubuntu
+    become: yes
       tasks:
        - name: Ensure that DOCKER daemon and Python env is present
          apt:
