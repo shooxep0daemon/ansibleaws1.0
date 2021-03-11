@@ -41,7 +41,7 @@
             cidr_ip: 0.0.0.0/0 
       register: security_group
 
-    - name: Ensure that there are "{{count}}" EC2 instances will be created or running already 
+    - name: Ensure that there are "{{ count }}" EC2 instances will be created or running already 
       ec2:
         group: "{{ security_group }}"
         instance_type: "{{ instance_type}}"
@@ -49,7 +49,7 @@
         wait : true
         region : "{{ region }}"
         keypair : "{{ keypair }}"
-        count: "{{count}}"
+        count: "{{ count }}"
         instance_tags:
           Name: builder
           Name: prod99
