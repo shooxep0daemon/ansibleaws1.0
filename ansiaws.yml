@@ -85,8 +85,6 @@
       apt:
         pkg:
           - docker.io
-          - python-docker
-          - python3
           - python
           - python3-pip
         state: present
