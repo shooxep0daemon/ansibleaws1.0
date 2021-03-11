@@ -43,17 +43,18 @@
 
     - name: Ensure that there are "{{ count }}" EC2 instances will be created or running already 
       ec2_instance:
-        group: buildsrv2
+        group: "{{ security_group }}"
         instance_type: "{{ instance_type }}"
         image : "{{ image }}"
-        wait : true
         region : "{{ region }}"
-        keypair : "{{ keypair }}"
+        key_name : "{{ keypair }}"
         count: "{{ count }}"
         state: running
-        instance_tags:
-          Name: prodrun
-          Type: ansiec2
+        tags:
+           name: "{{ item }}"
+      with_items:
+          - "buildergrp"
+          - "prodgrp"
       register: ec2
     - debug:
         var: ec2.results
