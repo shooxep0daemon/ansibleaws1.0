@@ -86,8 +86,8 @@
              - python-docker
              - python3
              - python3-pip
-          state: present
-          update_cache: yes
+         state: present
+         update_cache: yes
 
        - name: Ensure module docker-py is present
          pip:
