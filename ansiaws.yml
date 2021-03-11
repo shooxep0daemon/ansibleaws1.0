@@ -88,6 +88,7 @@
           - python-pip
           - python-docker
           - python3
+          - python
           - python3-pip
         state: present
         update_cache: yes
