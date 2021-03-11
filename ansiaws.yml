@@ -105,12 +105,12 @@
             src: Dockerfile
             dest: '{{ dest_dockerfile }}/Dockerfile'
 
-        - name: Ensure image is build and pushed from Builderhost to DH
-          docker_image:
+       - name: Ensure image is build and pushed from Builderhost to DH
+         docker_image:
             name: '{{ my_boxfuse }}'
             path: '{{ dest_dockerfile }}/'
             state: present
-          push: yes
+         push: yes
 
 #run all we have built :)
 
