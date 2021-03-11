@@ -45,7 +45,7 @@
       ec2_instance:
         group: "{{ security_group }}"
         instance_type: "{{ instance_type }}"
-        image : "{{ image }}"
+        image_id : "{{ image }}"
         region : "{{ region }}"
         key_name : "{{ keypair }}"
         state: running
