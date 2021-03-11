@@ -51,7 +51,7 @@
         count: "{{ count }}"
         instance_tags:
           Name: builder
-          Name: prod99
+          Type: prod99
         state: running
       register: ec2
     - debug:
