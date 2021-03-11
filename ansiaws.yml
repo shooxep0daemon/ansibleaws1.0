@@ -60,38 +60,38 @@
   become: yes
   tasks:
     - name: Ensure that DOCKER daemon and Python env is present
-         apt:
-           pkg:
-             - docker.io
-             - python-pip
-             - python-docker
-             - python3
-             - python3-pip
-         state: present
-         update_cache: yes
+      apt:
+        pkg:
+          - docker.io
+          - python-pip
+          - python-docker
+          - python3
+          - python3-pip
+        state: present
+        update_cache: yes
 
     - name: Ensure module docker-py is present
-         pip:
-           name: docker-py
-           state: present
+      pip:
+        name: docker-py
+        state: present
 
     - name: Ensure that we have access to the DOCKERHUB
-         docker_login:
-           username: '{{ dhub_user }}'
-           email: '{{ dhub_email }}'
-           password: '{{ dhub_passwd }}'
+      docker_login:
+        username: '{{ dhub_user }}'
+        email: '{{ dhub_email }}'
+        password: '{{ dhub_passwd }}'
      
     - name: Copy my dockerfile
-         copy:
-            src: Dockerfile
-            dest: '{{ dest_dockerfile }}/Dockerfile'
+      copy:
+        src: Dockerfile
+        dest: '{{ dest_dockerfile }}/Dockerfile'
 
     - name: Ensure image is build and pushed from Builderhost to DH
-         docker_image:
-            name: '{{ my_boxfuse }}'
-            path: '{{ dest_dockerfile }}/'
-            state: present
-         push: yes
+      docker_image:
+        name: '{{ my_boxfuse }}'
+        path: '{{ dest_dockerfile }}/'
+        state: present
+        push: yes
 
 #run all we have built :)
 - name: Run app in docker
@@ -101,19 +101,19 @@
   tasks:
 
     - name: Ensure that DOCKER daemon and Python env is present
-          apt:
-            pkg:
-              - docker.io
-            state: present
-            update_cache: yes
+      apt:
+        pkg:
+          - docker.io
+        state: present
+        update_cache: yes
 
     - name: Pull an image fromy our DH and run it
-          docker_container:
-            name: boxfuse1
-            image: '{{ my_boxfuse }}'
-            state: started
-            pull: true
-          ports:
-            - "8080:8080"
+      docker_container:
+        name: boxfuse1
+        image: '{{ my_boxfuse }}'
+        state: started
+        pull: true
+        ports:
+          - "8080:8080"
 
       
