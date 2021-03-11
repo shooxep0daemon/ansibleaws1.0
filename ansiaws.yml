@@ -51,6 +51,9 @@
         keypair : "{{ keypair }}"
         count: "{{ count }}"
         state: running
+        instance_tags:
+          Name: prodrun
+          Type: ansiec2
       register: ec2
     - debug:
         var: ec2.results
