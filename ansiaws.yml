@@ -54,7 +54,7 @@
   
  #prepare host and build from there
 
-  - name: Ensure building of a war file in a container
+- name: Ensure building of a war file in a container
     hosts: buildergrp
     remote_user: ubuntu
     become: yes
@@ -94,8 +94,7 @@
          push: yes
 
 #run all we have built :)
-
-    - name: Run app in docker
+- name: Run app in docker
       hosts: prodgrp
       remote_user: ubuntu
       become: yes
