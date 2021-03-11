@@ -90,11 +90,6 @@
         state: present
         update_cache: yes
 
-    - name: Ensure module docker-py is present
-      pip:
-        name: docker-py
-        state: present
-
     - name: Ensure that we have access to the DOCKERHUB
       docker_login:
         username: '{{ dhub_user }}'
