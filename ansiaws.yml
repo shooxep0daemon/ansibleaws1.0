@@ -43,7 +43,7 @@
 
     - name: Ensure that there are "{{ count }}" EC2 instances will be created or running already 
       ec2:
-        group: "{{ security_group }}"
+        group: "{{ security_group.name }}"
         instance_type: "{{ instance_type}}"
         image : "{{ image }}"
         wait : true
