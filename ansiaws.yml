@@ -57,7 +57,7 @@
         state: running
       register: ec2
 
-     - name: Add all instance public IPs to build group
+    - name: Add all instance public IPs to build group
        add_host:
          hostname: "{{ item.public_ip_address }}"
          groups: buildergrp
