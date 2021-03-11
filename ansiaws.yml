@@ -58,8 +58,8 @@
   hosts: buildergrp
   remote_user: ubuntu
   become: yes
-    tasks:
-      - name: Ensure that DOCKER daemon and Python env is present
+  tasks:
+    - name: Ensure that DOCKER daemon and Python env is present
          apt:
            pkg:
              - docker.io
@@ -70,23 +70,23 @@
          state: present
          update_cache: yes
 
-       - name: Ensure module docker-py is present
+    - name: Ensure module docker-py is present
          pip:
            name: docker-py
            state: present
 
-       - name: Ensure that we have access to the DOCKERHUB
+    - name: Ensure that we have access to the DOCKERHUB
          docker_login:
            username: '{{ dhub_user }}'
            email: '{{ dhub_email }}'
            password: '{{ dhub_passwd }}'
      
-       - name: Copy my dockerfile
+    - name: Copy my dockerfile
          copy:
             src: Dockerfile
             dest: '{{ dest_dockerfile }}/Dockerfile'
 
-       - name: Ensure image is build and pushed from Builderhost to DH
+    - name: Ensure image is build and pushed from Builderhost to DH
          docker_image:
             name: '{{ my_boxfuse }}'
             path: '{{ dest_dockerfile }}/'
