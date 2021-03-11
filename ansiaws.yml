@@ -37,6 +37,8 @@
           Name: prod99
         state: running
       register: ec2
+    - debug:
+      var: ec2.results
 
     - name: Add all instance public IPs to build group
       add_host:
