@@ -24,7 +24,7 @@
   tasks:
     - name: Ensure creation of a security group
       ec2_group: 
-        name: "{{ security_group }}"
+        name: buildsrv2
         description: Security Group for prod pods
         region: "{{ region }}"
         rules:
