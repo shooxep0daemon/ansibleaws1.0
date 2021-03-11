@@ -39,7 +39,6 @@
         rules_egress:
           - proto: all
             cidr_ip: 0.0.0.0/0 
-      register: security_group
 
     - name: Ensure that there are "{{ count }}" EC2 instances will be created or running already 
       ec2:
