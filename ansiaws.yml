@@ -80,6 +80,10 @@
   remote_user: ubuntu
   become: yes
   tasks:
+    - name: update repository
+      apt:
+       update_cache: yes 
+       
     - name: Ensure that DOCKER daemon and Python env is present
       apt:
         pkg:
