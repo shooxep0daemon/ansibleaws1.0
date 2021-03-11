@@ -59,7 +59,7 @@
   remote_user: ubuntu
   become: yes
     tasks:
-       - name: Ensure that DOCKER daemon and Python env is present
+      - name: Ensure that DOCKER daemon and Python env is present
          apt:
            pkg:
              - docker.io
@@ -95,19 +95,19 @@
 
 #run all we have built :)
 - name: Run app in docker
-      hosts: prodgrp
-      remote_user: ubuntu
-      become: yes
-      tasks:
+  hosts: prodgrp
+  remote_user: ubuntu
+  become: yes
+  tasks:
 
-        - name: Ensure that DOCKER daemon and Python env is present
+    - name: Ensure that DOCKER daemon and Python env is present
           apt:
             pkg:
               - docker.io
             state: present
             update_cache: yes
 
-        - name: Pull an image fromy our DH and run it
+    - name: Pull an image fromy our DH and run it
           docker_container:
             name: boxfuse1
             image: '{{ my_boxfuse }}'
